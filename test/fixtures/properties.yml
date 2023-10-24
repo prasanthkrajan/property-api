@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rent: 9.99
+  currency: MyString
+  full_address: MyString
+  type: 
+  bedroom: 1
+  bathroom: 1
+  closest_mrt: MyString
+  floor_size_in_ping: 9.99
+  floor_size_in_sqft: 9.99
+  city: MyString
+  district: MyString
+  title: MyString
+  image_url: MyText
+
+two:
+  rent: 9.99
+  currency: MyString
+  full_address: MyString
+  type: 
+  bedroom: 1
+  bathroom: 1
+  closest_mrt: MyString
+  floor_size_in_ping: 9.99
+  floor_size_in_sqft: 9.99
+  city: MyString
+  district: MyString
+  title: MyString
+  image_url: MyText

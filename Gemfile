@@ -31,6 +31,12 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Scraping framework
 gem 'kimurai'
 
+# Grape API
+gem 'grape'
+gem 'grape-active_model_serializers'
+gem 'grape-swagger'
+gem 'rack-cors', :require => 'rack/cors'
+
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails'

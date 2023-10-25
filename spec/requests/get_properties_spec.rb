@@ -31,4 +31,49 @@ RSpec.describe 'Properties', type: :request do
       end
     end
   end
+
+  describe 'GET /index with sorting params' do
+  	context 'when sort by rent' do
+  		let!(:cheapest_rent)       { FactoryBot.create(:property, rent: 200) }
+      let!(:most_expensive_rent) { FactoryBot.create(:property, rent: 800) }
+      let!(:mid_range_rent)      { FactoryBot.create(:property, rent: 500) }
+
+  		context 'in asc order' do
+  			before do
+	        get '/api/v1/properties?sort_by=rent&sort_order=asc'
+	      end
+
+	      it 'returns all properties with rent in ascending order' do
+          expect(json.size).to eq(3)
+          expect(json[0]['rent']).to eql(cheapest_rent.rent.to_s)
+          expect(json[1]['rent']).to eql(mid_range_rent.rent.to_s)
+          expect(json[2]['rent']).to eql(most_expensive_rent.rent.to_s)
+        end
+
+        it 'returns status code 200' do
+          expect(response).to have_http_status(:success)
+        end
+  		end
+
+  		context 'in desc order' do
+  			before do
+	        get '/api/v1/properties?sort_by=rent&sort_order=desc'
+	      end
+
+	      it 'returns all properties with rent in descending order' do
+          expect(json.size).to eq(3)
+          expect(json[0]['rent']).to eql(most_expensive_rent.rent.to_s)
+          expect(json[1]['rent']).to eql(mid_range_rent.rent.to_s)
+          expect(json[2]['rent']).to eql(cheapest_rent.rent.to_s)
+        end
+
+        it 'returns status code 200' do
+          expect(response).to have_http_status(:success)
+        end
+  		end
+  	end
+
+  	context 'when sort by floor size' do
+  	end
+  end
 end

@@ -5,7 +5,7 @@ FactoryBot.define do
     floor_size_in_sqft { Faker::Number.decimal }
     currency { 'NT$' }
     full_address { 'Songgao Rd. Xinyi Dist., Taipei City' }
-    type { 'residential' }
+    unit_type { 'residential' }
     bedroom { 5 }
     bathroom { 2 }
     closest_mrt { 'Dongmen' }

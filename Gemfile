@@ -40,6 +40,9 @@ gem 'rack-cors', :require => 'rack/cors'
 # Scoping
 gem 'has_scope'
 
+# authentication
+gem 'devise'
+
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails'

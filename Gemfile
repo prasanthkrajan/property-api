@@ -37,6 +37,9 @@ gem 'grape-active_model_serializers'
 gem 'grape-swagger'
 gem 'rack-cors', :require => 'rack/cors'
 
+# Scoping
+gem 'has_scope'
+
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails'

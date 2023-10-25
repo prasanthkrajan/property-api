@@ -18,7 +18,7 @@ module API
       resource :properties do
         desc "Return all properties"
         get "", root: :properties do
-          Property.order(sort_column => sort_direction)
+          PropertySearchQuery.new.perform(params).order(sort_column => sort_direction)
         end
 
         # desc "Return a graduate"

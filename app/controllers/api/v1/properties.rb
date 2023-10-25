@@ -21,14 +21,52 @@ module API
           PropertySearchQuery.new.perform(params).order(sort_column => sort_direction)
         end
 
-        # desc "Return a graduate"
-        # params do
-        #   requires :id, type: String, desc: "ID of the 
-        #     graduate"
-        # end
-        # get ":id", root: "graduate" do
-        #   Graduate.where(id: permitted_params[:id]).first!
-        # end
+        desc "Return a property"
+        params do
+          requires :id, type: String, desc: "Property ID"
+        end
+        get ":id", root: "property" do
+          Property.find(params[:id])
+        end
+
+        desc "Update a property"
+        params do
+          requires :id, type: String, desc: 'Property ID.'
+          optional :property, type: Hash do
+            optional :rent, type: BigDecimal 
+            optional :full_address, type: String
+            optional :unit_type, type: String
+            optional :bedroom, type: Integer
+            optional :bathroom, type: Integer
+            optional :closest_mrt, type: String
+            optional :floor_size_in_ping, type: BigDecimal
+            optional :floor_size_in_sqft, type: BigDecimal
+            optional :city, type: String
+            optional :district, type: String
+            optional :title, type: String
+            optional :image_url, type: String
+          end
+        end
+        put ":id" do
+          property = Property.find(params[:id])
+          if property
+            property.update(declared(params)['property'])
+            property
+          end
+        end
+
+        desc "Delete a property"
+        params do
+          requires :id, type: String, desc: 'Property ID.'
+        end
+        delete ":id" do
+          property = Property.find(params[:id])
+          if property
+            property.destroy!
+            status 204
+            {}
+          end
+        end
       end
     end
   end

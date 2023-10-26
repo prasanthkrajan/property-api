@@ -6,6 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Property.destroy_all
+User.destroy_all
+
+User.create(
+	email: 'user@email.com',
+	password: 'user1234'
+)
+
+User.create(
+	email: 'admin@email.com',
+	password: 'admin1234',
+	admin: true
+)
+
 30.times do
   Property.create(
   	rent: rand(1000..100000),

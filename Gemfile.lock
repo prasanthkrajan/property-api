@@ -139,6 +139,9 @@ GEM
     grape-active_model_serializers (1.5.2)
       active_model_serializers (>= 0.10.0)
       grape (>= 0.8.0)
+    grape-kaminari (0.4.5)
+      grape (>= 1.6.1)
+      kaminari-grape
     grape-swagger (1.6.1)
       grape (~> 1.3)
     has_scope (0.8.2)
@@ -154,6 +157,21 @@ GEM
       activesupport (>= 5.0.0)
     jsonapi-renderer (0.2.2)
     jwt (2.2.1)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
+    kaminari-grape (1.0.1)
+      grape
+      kaminari-core (~> 1.0)
     kimurai (1.4.0)
       activesupport
       capybara (>= 2.15, < 4.0)
@@ -377,10 +395,12 @@ DEPENDENCIES
   faker
   grape
   grape-active_model_serializers
+  grape-kaminari
   grape-swagger
   has_scope
   jbuilder (~> 2.7)
   jwt
+  kaminari
   kimurai
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)

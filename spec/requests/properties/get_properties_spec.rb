@@ -447,4 +447,19 @@ RSpec.describe 'Properties', type: :request do
       end
   	end
   end
+
+  describe 'GET /index with pagination params' do
+    before do
+      FactoryBot.create_list(:property, 20)
+      get '/api/v1/properties?page=1&per_page=5'
+    end
+
+    it 'returns properties as per the pagination params' do
+      expect(json.size).to eq(5)
+    end
+
+    it 'returns status code 200' do
+      expect(response).to have_http_status(:success)
+    end
+  end
 end

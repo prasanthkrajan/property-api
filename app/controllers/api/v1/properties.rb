@@ -1,25 +1,18 @@
 module API
   module V1
     class Properties < Grape::API
+      include Grape::Kaminari
       include API::V1::Defaults
       helpers AuthHelper
 
-      helpers do
-        def sort_direction
-          sort_order = params[:sort_order]&.downcase
-          %w[asc desc].include?(sort_order) ? sort_order : 'asc'
-        end
-
-        def sort_column
-          sort_by = params[:sort_by]&.downcase
-          Property.column_names.include?(sort_by) ? sort_by : 'rent'
-        end
-      end
-
       resource :properties do
         desc "Return all properties"
-        get "", root: :properties do
-          PropertySearchQuery.new.perform(params).order(sort_column => sort_direction)
+        params do
+          use :pagination, per_page: 20, max_per_page: 30
+        end
+        get do
+          properties = PropertySearchQuery.new(params).perform!
+          paginate(properties)
         end
 
         desc "Return a property"

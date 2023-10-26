@@ -44,6 +44,10 @@ gem 'has_scope'
 gem 'devise'
 gem 'jwt'
 
+# pagination
+gem 'kaminari'
+gem 'grape-kaminari'
+
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails'

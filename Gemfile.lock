@@ -153,6 +153,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jsonapi-renderer (0.2.2)
+    jwt (2.2.1)
     kimurai (1.4.0)
       activesupport
       capybara (>= 2.15, < 4.0)
@@ -379,6 +380,7 @@ DEPENDENCIES
   grape-swagger
   has_scope
   jbuilder (~> 2.7)
+  jwt
   kimurai
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)

@@ -10,7 +10,8 @@ RSpec.describe 'Auth', type: :request do
       end
 
       it 'returns a valid auth token' do
-        expect(json).to eql('x')
+        expect(json['auth_token']).not_to be_nil
+        expect { JsonWebToken.decode(json['auth_token']) }.not_to raise_error
       end
     end
 

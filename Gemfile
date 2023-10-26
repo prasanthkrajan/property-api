@@ -42,6 +42,7 @@ gem 'has_scope'
 
 # authentication
 gem 'devise'
+gem 'jwt'
 
 group :development, :test do
   gem 'pry'

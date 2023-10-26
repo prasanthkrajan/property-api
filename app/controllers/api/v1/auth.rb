@@ -25,7 +25,6 @@ module API
         #   requires :password, type: String, desc: "Password"
         # end
         # post ':register' do
-        #   binding.pry
         #   user = User.create!(params)
         #   if user
         #     user.auth_token = JsonWebToken.encode(user_id: user.id)

@@ -2,6 +2,11 @@ module API
   module V1
     class FavouriteProperties < Grape::API
       include API::V1::Defaults
+      helpers AuthHelper
+
+      before do
+        authenticate!
+      end
 
       resource :favourite_properties do
         desc "Create a favourite property"
@@ -10,7 +15,8 @@ module API
           requires :property_id, type: Integer, desc: "Property ID"
         end
         post do
-          ::FavouriteProperty.create!(params)
+          ensure_resource_action!
+          FavouriteProperty.create!(params)
         end
 
         desc "Delete a favourite property"
@@ -20,6 +26,7 @@ module API
         delete ":id" do
           fav_property = FavouriteProperty.find(params[:id])
           if fav_property
+            ensure_resource_action!(fav_property.user)
             fav_property.destroy!
             status 204
             {}

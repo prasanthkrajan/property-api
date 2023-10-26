@@ -48,6 +48,8 @@ module API
           end
         end
         put ":id" do
+          binding.pry
+          authenticate!
           property = Property.find(params[:id])
           if property
             property.update(declared(params)['property'])

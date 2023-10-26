@@ -9,6 +9,13 @@ module API
       end
 
       resource :favourite_properties do
+
+        desc "Return all fav properties that belong to a user"
+        get do
+          authenticate!
+          current_user.favourite_properties.order('created_at DESC')
+        end
+
         desc "Create a favourite property"
         params do
           requires :user_id, type: Integer, desc: "User ID"

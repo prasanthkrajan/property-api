@@ -2,6 +2,7 @@ module API
   module V1
     class Properties < Grape::API
       include API::V1::Defaults
+      helpers AuthHelper
 
       helpers do
         def sort_direction
@@ -48,7 +49,6 @@ module API
           end
         end
         put ":id" do
-          binding.pry
           authenticate!
           property = Property.find(params[:id])
           if property
@@ -62,6 +62,7 @@ module API
           requires :id, type: String, desc: 'Property ID.'
         end
         delete ":id" do
+          authenticate!
           property = Property.find(params[:id])
           if property
             property.destroy!

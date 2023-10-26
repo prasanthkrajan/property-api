@@ -2,8 +2,22 @@ require 'rails_helper'
 
 RSpec.describe 'Properties', type: :request do
   describe 'PUT /update' do
+    let!(:user)           { FactoryBot.create(:user) }
     let!(:property_one)   { FactoryBot.create(:property) }
     let!(:property_two)   { FactoryBot.create(:property) }
+
+    context 'when auth token is not present' do
+      let!(:previous_rent) { property_two.rent }
+      let!(:new_rent)      { property_two.rent + 500 }
+
+      before do
+        put "/api/v1/properties/#{property_two.id}", params: { property: { rent: new_rent } }
+      end
+
+      it 'returns status code 401' do
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
 
   	context 'and if data is present' do
       context 'and update params are valid' do
@@ -11,6 +25,7 @@ RSpec.describe 'Properties', type: :request do
         let!(:new_rent)      { property_two.rent + 500 }
 
         before do
+          allow_any_instance_of(AuthHelper).to receive(:current_user).and_return(user)
           put "/api/v1/properties/#{property_two.id}", params: { property: { rent: new_rent } }
         end
         
@@ -26,6 +41,7 @@ RSpec.describe 'Properties', type: :request do
 
       context 'but update params are not valid' do
         before do
+          allow_any_instance_of(AuthHelper).to receive(:current_user).and_return(user)
           put "/api/v1/properties/#{property_two.id}", params: { property: { bogative: 'bogative' } }
         end
         
@@ -40,6 +56,7 @@ RSpec.describe 'Properties', type: :request do
 
       context 'but update params are malformed' do
         before do
+          allow_any_instance_of(AuthHelper).to receive(:current_user).and_return(user)
           put "/api/v1/properties/#{property_two.id}", params: { bogative: 'bogative' }
         end
         
@@ -55,6 +72,7 @@ RSpec.describe 'Properties', type: :request do
 
     context 'but if no data is present' do
       before do
+        allow_any_instance_of(AuthHelper).to receive(:current_user).and_return(user)
         get "/api/v1/properties/#{property_two.id + property_one.id}"
       end
       

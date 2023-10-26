@@ -19,4 +19,8 @@ module AuthHelper
 
   	error!('Forbidden. Not allowed', 403) unless context_user_id == current_user.id
   end
+
+  def ensure_admin!
+    error!('Forbidden. Not allowed', 403) unless current_user.admin
+  end
 end

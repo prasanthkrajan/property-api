@@ -50,6 +50,7 @@ module API
         end
         put ":id" do
           authenticate!
+          ensure_admin!
           property = Property.find(params[:id])
           if property
             property.update(declared(params)['property'])
@@ -63,6 +64,7 @@ module API
         end
         delete ":id" do
           authenticate!
+          ensure_admin!
           property = Property.find(params[:id])
           if property
             property.destroy!

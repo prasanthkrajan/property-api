@@ -40,7 +40,7 @@ class PropertySearchQuery
   end
 
   def filter_by_closest_mrt(scoped, closest_mrt = nil)
-  	closest_mrt ? scoped.where(closest_mrt: closest_mrt) : scoped
+  	closest_mrt ? scoped.where("closest_mrt ILIKE ?", "%#{closest_mrt}%") : scoped
   end
 
   def sort(scoped, sort_by, sort_order)

@@ -22,7 +22,8 @@ class PropertyPresenter
 			title: element[:title],
 			image_url: element[:image],
 			bathroom: element[:layout].partition('sq.ft)').last.strip.split(' Bath')[0].to_i,
-			bedroom: element[:layout].partition(' Bed').first.split(' ').last.to_i
+			bedroom: element[:layout].partition(' Bed').first.split(' ').last.to_i,
+			closest_mrt: element[:mrt].split("\n").first.strip.split('MRT： ').last
 		}
 	end
 end

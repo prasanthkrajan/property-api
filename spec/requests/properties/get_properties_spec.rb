@@ -418,7 +418,7 @@ RSpec.describe 'Properties', type: :request do
 
       context 'and data for the closest_mrt is present' do
       	before do
-	        get '/api/v1/properties?closest_mrt=Dongmen'
+	        get '/api/v1/properties?closest_mrt=dong'
 	      end
 
 	      it 'returns all properties with filtered closest mrt, sorted by default rent in asc order' do

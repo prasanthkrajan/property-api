@@ -1,24 +1,11 @@
-# README
+# Property API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Development Setup
 
-Things you may want to cover:
+1. Ensure you run `bundle install`, and `rake db:setup`, prior to `rails s`
 
-* Ruby version
+2. If you wish to use scraped data from a chosen rental website, run `rake seed:scrape_ur_house_website`. If you prefer lighter, simpler data, please run `rake db:seed`
 
-* System dependencies
+3. Your API should now be running on `localhost:3000`. To test it out, try acessing `http://localhost:3000/api/v1/docs`
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

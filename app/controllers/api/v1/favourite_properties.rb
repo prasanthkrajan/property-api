@@ -9,7 +9,6 @@ module API
       end
 
       resource :favourite_properties do
-
         desc "Return all fav properties that belong to a user"
         get do
           authenticate!
